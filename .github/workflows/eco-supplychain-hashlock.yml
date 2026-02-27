@@ -82,7 +82,7 @@ jobs:
           git push
 
       - name: Upload supplychain reports
-        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
+        uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 # v3.2.1
         with:
           name: eco-supplychain-reports-pr
           path: |
@@ -153,7 +153,7 @@ jobs:
             --out-md supplychain/reports/latest.summary.md
 
       - name: Upload supplychain reports
-        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
+        uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 # v3.2.1
         with:
           name: eco-supplychain-reports-main
           path: |

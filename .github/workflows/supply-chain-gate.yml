@@ -46,7 +46,7 @@ jobs:
           echo "sbom-path=sbom-artifacts" >> $GITHUB_OUTPUT
 
       - name: Upload SBOM artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sbom-artifacts
           path: sbom-artifacts/
@@ -82,7 +82,7 @@ jobs:
           done
 
       - name: Upload signed bundles
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sbom-signed-bundles
           path: sbom-artifacts/*.bundle

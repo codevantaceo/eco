@@ -98,7 +98,7 @@ jobs:
           echo "total_runs=$TOTAL_RUNS" >> $GITHUB_OUTPUT
 
       - name: Upload report as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: immutable-rules-report-${{ steps.timing.outputs.actual_time }}
           path: tests/reports/immutable-rules-report-latest.json
