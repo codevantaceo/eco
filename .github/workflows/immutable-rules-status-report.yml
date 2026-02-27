@@ -115,7 +115,7 @@ jobs:
 
       - name: Create or update tracking issue on failure
         if: steps.report.outputs.overall == 'FAIL'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           FAIL_COUNT: ${{ steps.report.outputs.fail_count }}
           PASS_RATE: ${{ steps.report.outputs.pass_rate }}
