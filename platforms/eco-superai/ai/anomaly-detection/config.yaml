@@ -44,7 +44,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/configmap/anomaly-detection-config
-    eco-base/urn: urn:eco-base:k8s:core:configmap:anomaly-detection-config:sha256-b15f50d85e837be29b097308652fc5dc17898b5dad51e1d696c7bf6b62baab45
+    eco-base/urn: urn:eco-base:k8s:core:configmap:anomaly-detection-config:sha256-ea3c40b32b46ebbc2ab20b0d0dea33cb5558da5f1d7005aaf62f4c95f2f47028
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -66,7 +66,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/cronjob/anomaly-model-training
-    eco-base/urn: urn:eco-base:k8s:core:cronjob:anomaly-model-training:sha256-af238090c0eedcb4101b39359a10f6d25609fd95b0ff0e5314e6ebd3eb97dec6
+    eco-base/urn: urn:eco-base:k8s:core:cronjob:anomaly-model-training:sha256-ac927b554f19ce2548731ca2f4865dc827b1eda8591bce7e3d1138534cb25247
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -145,7 +145,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/deployment/anomaly-detection-service
-    eco-base/urn: urn:eco-base:k8s:core:deployment:anomaly-detection-service:sha256-068f2a0ccb03d6df119504c42c2c27813622b432f502bfb57a7820dbe7cb343c
+    eco-base/urn: urn:eco-base:k8s:core:deployment:anomaly-detection-service:sha256-739a3458d01cf45af5f6f600b8d8eea593062d9e34ab7fbbd0512fe596bb7d8e
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -227,7 +227,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/service/anomaly-detection-service
-    eco-base/urn: urn:eco-base:k8s:core:service:anomaly-detection-service:sha256-1add5408b350091fdc46997600d5fd6934d33dcd62f7176efe709fa5dac80e03
+    eco-base/urn: urn:eco-base:k8s:core:service:anomaly-detection-service:sha256-7fd024ccd8b9524f0f128ca1c94f1ef7de8f301b4dd1e339720ab599cf8bdd18
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -260,7 +260,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/secret/anomaly-detection-secrets
-    eco-base/urn: urn:eco-base:k8s:core:secret:anomaly-detection-secrets:sha256-5690ed0e228feb3c37a88a16e853d6abaee2dedd31b125951bc715e9339a942a
+    eco-base/urn: urn:eco-base:k8s:core:secret:anomaly-detection-secrets:sha256-c343bc3d9da20deaff6737631a6d25c093562cfb226bfbb7ca5e9e191e1b7cd5
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component

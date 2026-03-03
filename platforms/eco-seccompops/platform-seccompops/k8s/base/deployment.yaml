@@ -6,7 +6,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/deployment/seccompops-engine
-    eco-base/urn: urn:eco-base:k8s:core:deployment:seccompops-engine:sha256-fb7352a0e15d29c171d73e893ed5dd5a81fbe7ffd800f8cbd9a8e82d4324df07
+    eco-base/urn: urn:eco-base:k8s:core:deployment:seccompops-engine:sha256-df2d6052ead5497922fe14c9c3797f1147f4198a07d60dddfd95f55026745a2f
   labels:
     app.kubernetes.io/component: api
     app.kubernetes.io/instance: eco-instance
@@ -97,7 +97,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/deployment/seccompops-enforcer
-    eco-base/urn: urn:eco-base:k8s:core:deployment:seccompops-enforcer:sha256-cc0b66c0d02f58129c15e10655b64d44c3a0fe513aefa5ed4920818e924e68b1
+    eco-base/urn: urn:eco-base:k8s:core:deployment:seccompops-enforcer:sha256-c0ef8b3e1fc944aa46f3f6b06b031ca6ffe9c9068c21c6f2f8f32fc39d7c9243
   labels:
     app.kubernetes.io/component: worker
     app.kubernetes.io/instance: eco-instance
@@ -151,7 +151,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/deployment/seccompops-auditor
-    eco-base/urn: urn:eco-base:k8s:core:deployment:seccompops-auditor:sha256-db94412589d94c0c0a98e36b333d96e9c289ac80d2a40bd2954612bcbbe53ba1
+    eco-base/urn: urn:eco-base:k8s:core:deployment:seccompops-auditor:sha256-2a797e1dc674fc8ea45a4634d29fdbe0981e5df68251402247d329588af00b58
   labels:
     app.kubernetes.io/component: worker
     app.kubernetes.io/instance: eco-instance

@@ -6,7 +6,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/secret/alertmanager-pagerduty
-    eco-base/urn: urn:eco-base:k8s:core:secret:alertmanager-pagerduty:sha256-22af890b6d7958c75fe03ccef4e4e4afd9397da3b8e4ad9b3e07c4cba8a06f68
+    eco-base/urn: urn:eco-base:k8s:core:secret:alertmanager-pagerduty:sha256-81838591449519905c335bb4503652dbef588b95f68eb7051b23dd5d237bb188
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -82,7 +82,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/configmap/alertmanager-config
-    eco-base/urn: urn:eco-base:k8s:core:configmap:alertmanager-config:sha256-4909913e3f66ea933e5cca9a7bc2cd2b61d6aef382f1be8eac5d4a1265e8c220
+    eco-base/urn: urn:eco-base:k8s:core:configmap:alertmanager-config:sha256-3fc675c1da7683e1d46c2a13830e3757aec9c5c0737d8a9a5441574780a1daee
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -104,7 +104,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/deployment/alertmanager
-    eco-base/urn: urn:eco-base:k8s:core:deployment:alertmanager:sha256-460319379f7f39fad382c7b855c6a8298774d7665bbd8ea5a82f49b062284faa
+    eco-base/urn: urn:eco-base:k8s:core:deployment:alertmanager:sha256-b16266c9aef6f0739dd6f438862b6e6143d73a877ae57f80545d23aedb94a37e
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -191,7 +191,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/service/alertmanager
-    eco-base/urn: urn:eco-base:k8s:core:service:alertmanager:sha256-61c0039e3deffd50eedc38ef45714d340cc5c77a0008f0fe0ef76d8cb72dd8a6
+    eco-base/urn: urn:eco-base:k8s:core:service:alertmanager:sha256-a74b0a7ec13ba81db2cf8721bc82e991750739b5f414fa15b160965765fdf2e0
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -303,7 +303,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/configmap/prometheus-alerts
-    eco-base/urn: urn:eco-base:k8s:core:configmap:prometheus-alerts:sha256-512d77fdca04257492e8774e0c89ba42a14c327157ffc869f9669ab0cdd90bf4
+    eco-base/urn: urn:eco-base:k8s:core:configmap:prometheus-alerts:sha256-6d16a66266a9789d7a676bfd67be33626fa3192eba715ba00c3605461825a56f
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component

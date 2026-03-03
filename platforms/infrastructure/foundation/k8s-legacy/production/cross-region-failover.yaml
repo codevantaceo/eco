@@ -67,7 +67,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/configmap/cross-region-failover-config
-    eco-base/urn: urn:eco-base:k8s:core:configmap:cross-region-failover-config:sha256-78d403d517372b2c1428844a382c8667e17378620a06a2f31f6a7a9476cce9e3
+    eco-base/urn: urn:eco-base:k8s:core:configmap:cross-region-failover-config:sha256-52ca19df2bdabb7a64816f0e790c523b3f22ff504272a5f3ef2ee21141be5ece
   labels:
     app.kubernetes.io/component: eco-component
     app.kubernetes.io/instance: eco-instance

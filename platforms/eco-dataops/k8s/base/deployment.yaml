@@ -6,7 +6,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/deployment/dataops-engine
-    eco-base/urn: urn:eco-base:k8s:core:deployment:dataops-engine:sha256-1f59089117899004399521f2056d9876c335dcc24f807f5428d3f71027553afb
+    eco-base/urn: urn:eco-base:k8s:core:deployment:dataops-engine:sha256-d461c4d7fc92eebccb901fe7bf95aae2c86b5aca0467d08ff5f0a77ee14b7aae
   labels:
     app.kubernetes.io/component: api
     app.kubernetes.io/instance: eco-instance
@@ -66,12 +66,12 @@ spec:
         resources:
           limits:
             cpu: '1'
+            ephemeral-storage: 1Gi
             memory: 512Mi
-            ephemeral-storage: "1Gi"
           requests:
             cpu: 250m
+            ephemeral-storage: 1Gi
             memory: 256Mi
-            ephemeral-storage: "1Gi"
         volumeMounts:
         - mountPath: /app/evidence
           name: evidence-store
@@ -98,7 +98,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/deployment/dataops-pipeline
-    eco-base/urn: urn:eco-base:k8s:core:deployment:dataops-pipeline:sha256-7b3d0de74276a6dc00f53d8a8b7834df2174a954588f22cd3bd6b632c19cd1ea
+    eco-base/urn: urn:eco-base:k8s:core:deployment:dataops-pipeline:sha256-25510d23fc4a890e2d1c782841112b9a46390ae77e52a8449f390a0c734be0be
   labels:
     app.kubernetes.io/component: worker
     app.kubernetes.io/instance: eco-instance
@@ -136,12 +136,12 @@ spec:
         resources:
           limits:
             cpu: 500m
+            ephemeral-storage: 1Gi
             memory: 256Mi
-            ephemeral-storage: "1Gi"
           requests:
             cpu: 100m
+            ephemeral-storage: 1Gi
             memory: 128Mi
-            ephemeral-storage: "1Gi"
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -154,7 +154,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/deployment/dataops-anomaly
-    eco-base/urn: urn:eco-base:k8s:core:deployment:dataops-anomaly:sha256-16b6b10d906d263c206a7eceab4e89673237f840136860a3f76ecc7e3c7bac6e
+    eco-base/urn: urn:eco-base:k8s:core:deployment:dataops-anomaly:sha256-857ef12aea14731b850bcfbf46f84f22a17038ca93d968376912420b3f058dbd
   labels:
     app.kubernetes.io/component: worker
     app.kubernetes.io/instance: eco-instance
@@ -192,12 +192,12 @@ spec:
         resources:
           limits:
             cpu: '1'
+            ephemeral-storage: 1Gi
             memory: 1Gi
-            ephemeral-storage: "1Gi"
           requests:
             cpu: 250m
+            ephemeral-storage: 1Gi
             memory: 256Mi
-            ephemeral-storage: "1Gi"
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000

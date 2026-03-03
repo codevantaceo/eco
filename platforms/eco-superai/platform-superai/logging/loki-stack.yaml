@@ -6,7 +6,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/statefulset/loki
-    eco-base/urn: urn:eco-base:k8s:core:statefulset:loki:sha256-0e68eb2be0948943afd40883075b847bfcf212d89ce41b26215fd81d5ae07f5a
+    eco-base/urn: urn:eco-base:k8s:core:statefulset:loki:sha256-2edadae58abcb20252ad04d6b1538dba7bbf82982e6db77e114ce1b450de8824
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -110,7 +110,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/configmap/loki-config
-    eco-base/urn: urn:eco-base:k8s:core:configmap:loki-config:sha256-6ff276934045b6a0a47e4041b80704eba575e3db29cb4fdf920671529f01a5da
+    eco-base/urn: urn:eco-base:k8s:core:configmap:loki-config:sha256-d6bd78444285c102013b72fccd27a6c4612b13191952f97cdb277c42c8f20f3f
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -132,7 +132,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/service/loki
-    eco-base/urn: urn:eco-base:k8s:core:service:loki:sha256-485c011f926ca2bb8d127fd0588c21dd4f9b41a1f39107ca946fb4e79cbdbcbc
+    eco-base/urn: urn:eco-base:k8s:core:service:loki:sha256-e692898a7394a37b1454ace0a16e2e133e5070a6e2bd0a36e9f886bca45a5f07
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -166,7 +166,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/service/loki-headless
-    eco-base/urn: urn:eco-base:k8s:core:service:loki-headless:sha256-b53f9984c50e6f78807e28a57e9467433be93790c50a3e5d71e3704ba228ff77
+    eco-base/urn: urn:eco-base:k8s:core:service:loki-headless:sha256-daa34f278f68e220b3e97e6dd8007b2008808f70fe06c17d1abb57fd88d799c9
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -197,7 +197,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/daemonset/promtail
-    eco-base/urn: urn:eco-base:k8s:core:daemonset:promtail:sha256-996eb1e584d1c7893eb4800c36ae611c00e589db0f1c32b17006ba27bd2f7b43
+    eco-base/urn: urn:eco-base:k8s:core:daemonset:promtail:sha256-879783e97bc86d27ee41bfeb039c4baf1d380b4554de33e811119506a53696c6
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -299,7 +299,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/configmap/promtail-config
-    eco-base/urn: urn:eco-base:k8s:core:configmap:promtail-config:sha256-b17304fc5e06034b80aeee61e2054279ed9a19a8c8ed1460c2bdfe014572cfe2
+    eco-base/urn: urn:eco-base:k8s:core:configmap:promtail-config:sha256-776c20d7d0d4ce7f54620dac537da0a9fce66174489ce430dff57851b3e15b42
   labels:
     app: superai-platform
     app.kubernetes.io/component: eco-component
@@ -363,7 +363,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/configmap/grafana-datasource-loki
-    eco-base/urn: urn:eco-base:k8s:core:configmap:grafana-datasource-loki:sha256-baf20e64add5f8656fdb327b2b2d7e6256c760363f280485fc0fbe5608171255
+    eco-base/urn: urn:eco-base:k8s:core:configmap:grafana-datasource-loki:sha256-89b5f1be594a8f65ca92ff8e99ce4bb166e04d38c40e9e795d53735a18160502
   labels:
     app.kubernetes.io/component: eco-component
     app.kubernetes.io/instance: eco-instance

@@ -198,7 +198,7 @@ metadata:
     eco-base/audit-log-level: minimal
     eco-base/governance-policy: standard-v1
     eco-base/uri: eco-base://k8s/core/service/superai-app-canary
-    eco-base/urn: urn:eco-base:k8s:core:service:superai-app-canary:sha256-67e21e4555a842473756eaafa44e8f6326c92ca2ac9f47cd69d18e45f46b8139
+    eco-base/urn: urn:eco-base:k8s:core:service:superai-app-canary:sha256-eb050f778a906cfa037938be92dd941f01333a6e7c39053a45ee5540cd3d9c69
   labels:
     app.kubernetes.io/component: app
     app.kubernetes.io/instance: eco-instance
