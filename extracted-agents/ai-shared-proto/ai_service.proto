@@ -1,5 +1,5 @@
 syntax = "proto3";
-package eco-base.ai;
+package eco_base.ai;
 
 service AIService {
   rpc GenerateContent (GenerateRequest)  returns (GenerateResponse);
