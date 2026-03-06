@@ -93,7 +93,11 @@ class ExpertFactory:
             answer = response.choices[0].message.content
             usage = {"prompt_tokens": response.usage.prompt_tokens, "completion_tokens": response.usage.completion_tokens, "total_tokens": response.usage.total_tokens}
         except Exception as e:
-            answer = f"[LLM unavailable] Expert '{expert['name']}' ({expert['domain']}): Based on domain knowledge, here is a synthesized response to your query about: {query[:200]}. Error: {str(e)}"
+            logger.error("llm_call_failed", error=str(e), expert_id=expert_id)
+            answer = (
+                f"[LLM unavailable] Expert '{expert['name']}' ({expert['domain']}): "
+                f"Based on domain knowledge, here is a synthesized response to your query about: {query[:200]}."
+            )
             usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
 
         elapsed = (time.perf_counter() - start) * 1000
