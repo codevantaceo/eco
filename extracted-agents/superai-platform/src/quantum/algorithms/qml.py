@@ -126,4 +126,10 @@ class QMLClassifier:
             return {"job_id": job_id, "status": "error", "result": {"error": "Qiskit not installed"}, "metadata": {}, "execution_time_ms": 0}
         except Exception as e:
             logger.error("qml_error", error=str(e))
-            return {"job_id": job_id, "status": "error", "result": {"error": str(e)}, "metadata": {}, "execution_time_ms": 0}
+            return {
+                "job_id": job_id,
+                "status": "error",
+                "result": {"error": "Internal QML error"},
+                "metadata": {},
+                "execution_time_ms": 0,
+            }
