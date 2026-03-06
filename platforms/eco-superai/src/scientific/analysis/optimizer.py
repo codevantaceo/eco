@@ -2,6 +2,7 @@
 from __future__ import annotations
 from typing import Any
 import numpy as np
+import logging
 
 
 class ScientificOptimizer:
@@ -71,4 +72,5 @@ class ScientificOptimizer:
                 return {"error": f"Unknown method: {method}"}
 
         except Exception as e:
-            return {"error": str(e)}
+            logging.exception("Error while solving optimization problem")
+            return {"error": "Optimization failed due to an internal error."}
