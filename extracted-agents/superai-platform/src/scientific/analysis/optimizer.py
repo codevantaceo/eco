@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 import numpy as np
 import numexpr as ne
+import numexpr as ne
 
 
 class ScientificOptimizer:
@@ -16,15 +17,29 @@ class ScientificOptimizer:
                 def obj_func(x: np.ndarray) -> float:
                     ns = {**safe_ns, "x": x}
                     for i, val in enumerate(x):
-                        ns[f"x{i}"] = val
+                    return float(ne.evaluate(objective, local_dict=ns))
                     return float(ne.evaluate(objective, local_dict=ns))
 
                 x0 = np.array(initial_guess) if initial_guess else np.zeros(parameters.get("dimensions", 2))
                 scipy_bounds = [(b[0], b[1]) for b in bounds] if bounds else None
                 scipy_constraints = []
-                for c in constraints:
                     scipy_constraints.append(
                         {
+                            "type": c.get("type", "ineq"),
+                            "fun": lambda x, expr=c.get("expression", "0"): float(
+                                ne.evaluate(expr, local_dict={**safe_ns, "x": x})
+                            ),
+                        }
+                    )
+                    scipy_constraints.append(
+                result = sci_opt.minimize(
+                    obj_func,
+                    x0,
+                    bounds=scipy_bounds,
+                    constraints=scipy_constraints or None,
+                    method=parameters.get("scipy_method", "SLSQP"),
+                    options={"maxiter": parameters.get("max_iterations", 1000)},
+                )
                             "type": c.get("type", "ineq"),
                             "fun": lambda x, expr=c.get("expression", "0"): float(
                                 ne.evaluate(expr, local_dict={**safe_ns, "x": x})
@@ -39,7 +54,7 @@ class ScientificOptimizer:
                     "optimal_value": round(float(result.fun), 10),
                     "optimal_point": result.x.tolist(),
                     "converged": bool(result.success),
-                    "message": result.message,
+                    return float(ne.evaluate(objective, local_dict=ns))
                     "iterations": int(result.nit) if hasattr(result, "nit") else int(result.nfev),
                     "function_evaluations": int(result.nfev),
                 }
@@ -61,7 +76,7 @@ class ScientificOptimizer:
                 b_eq = parameters.get("b_eq")
                 result = sci_opt.linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq, bounds=bounds or None)
                 return {"method": "linprog", "optimal_value": round(float(result.fun), 10), "optimal_point": result.x.tolist(), "converged": bool(result.success), "message": result.message}
-
+                    return np.array(ne.evaluate(objective, local_dict=ns))
             elif method == "curve_fit":
                 x_data = np.array(parameters.get("x_data", []))
                 y_data = np.array(parameters.get("y_data", []))
