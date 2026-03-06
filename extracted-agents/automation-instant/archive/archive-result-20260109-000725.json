@@ -1,13 +1,3 @@
-# @ECO-governed
-# @ECO-layer: GL00-09
-# @ECO-semantic: general-component
-# @ECO-audit-trail: gov-enterprise-architecture/governance/audit-trails/GL00_09-audit.json
-#
-# GL Unified Architecture Governance Framework Activated
-# GL Root Semantic Anchor: gov-enterprise-architecture/governance/ECO-ROOT-SEMANTIC-ANCHOR.yaml
-# GL Unified Naming Charter: gov-enterprise-architecture/governance/ECO-UNIFIED-NAMING-CHARTER.yaml
-
-
 {
   "status": "REALIZED",
   "execution_time": 0.116308,
