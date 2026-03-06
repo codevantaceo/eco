@@ -8,6 +8,7 @@ from typing import Any
 import structlog
 
 logger = structlog.get_logger(__name__)
+GENERIC_EXECUTION_ERROR_MESSAGE = "Internal error during quantum circuit execution"
 
 
 class QuantumExecutor:
@@ -54,7 +55,7 @@ class QuantumExecutor:
             return {"job_id": job_id, "status": "error", "result": {"error": "Qiskit not installed. Install with: pip install qiskit qiskit-aer"}, "metadata": {}, "execution_time_ms": 0}
         except Exception as e:
             logger.error("quantum_circuit_error", error=str(e))
-            return {"job_id": job_id, "status": "error", "result": {"error": str(e)}, "metadata": {}, "execution_time_ms": 0}
+            return {"job_id": job_id, "status": "error", "result": {"error": GENERIC_EXECUTION_ERROR_MESSAGE}, "metadata": {}, "execution_time_ms": 0}
 
     def _build_circuit(self, num_qubits: int, circuit_type: str, parameters: dict[str, Any]) -> Any:
         from qiskit import QuantumCircuit

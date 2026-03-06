@@ -12,6 +12,7 @@ from src.domain.entities.quantum_job import JobStatus, QuantumAlgorithm, Quantum
 from src.domain.exceptions import EntityNotFoundException, BusinessRuleViolation
 
 logger = structlog.get_logger(__name__)
+GENERIC_JOB_ERROR_MESSAGE = "Internal error while processing quantum job"
 
 
 class SubmitQuantumJobUseCase:
@@ -61,7 +62,8 @@ class SubmitQuantumJobUseCase:
             else:
                 job.fail(result.get("result", {}).get("error", "Unknown error"))
         except Exception as e:
-            job.fail(str(e))
+            logger.error("submit_quantum_job_failed", error=str(e))
+            job.fail(GENERIC_JOB_ERROR_MESSAGE)
 
         await self._bus.publish_all(job.collect_events())
 
