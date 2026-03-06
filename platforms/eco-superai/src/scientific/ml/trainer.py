@@ -103,8 +103,13 @@ class MLTrainer:
                 "execution_time_ms": round(elapsed, 2),
             }
         except Exception as e:
-            logger.error("ml_training_error", error=str(e))
-            return {"model_id": model_id, "algorithm": algorithm, "error": str(e)}
+            # Log detailed error server-side, but return only a generic message to the client.
+            logger.error("ml_training_error", error=str(e), model_id=model_id, algorithm=algorithm)
+            return {
+                "model_id": model_id,
+                "algorithm": algorithm,
+                "error": "An error occurred during ML model training.",
+            }
 
     async def predict(self, model_id: str, features: list[list[float]]) -> dict[str, Any]:
         if model_id not in _MODEL_STORE:
