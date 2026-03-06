@@ -1,6 +1,7 @@
 """Interpolation using SciPy."""
 from __future__ import annotations
 from typing import Any
+import logging
 import numpy as np
 
 
@@ -26,4 +27,5 @@ class Interpolator:
             y_new = f(x_n)
             return {"method": method, "x_new": x_n.tolist(), "y_interpolated": y_new.tolist(), "points_count": len(x_new)}
         except Exception as e:
-            return {"error": str(e)}
+            logging.exception("Interpolation failed", exc_info=e)
+            return {"error": "Interpolation failed due to invalid input or configuration."}
