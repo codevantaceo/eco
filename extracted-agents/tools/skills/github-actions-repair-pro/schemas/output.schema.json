@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "github-actions-repair-pro output",
+  "type": "object",
+  "required": ["root_cause", "fix_applied", "verification_status"],
+  "minProperties": 3,
+  "properties": {
+    "root_cause": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identified root cause of failure"
+    },
+    "fix_applied": {
+      "type": "boolean",
+      "description": "Whether fix was successfully applied"
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": ["success", "failure", "timeout"],
+      "description": "Post-fix verification result"
+    },
+    "patch_diff": {
+      "type": "string",
+      "description": "Applied patch in unified diff format"
+    },
+    "commit_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$",
+      "description": "SHA of the fix commit"
+    },
+    "error_taxonomy": {
+      "type": "object",
+      "description": "Classified error details with category, severity, file, line",
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": ["yaml-syntax", "dockerfile-path", "identity-drift", "governance-missing", "schema-violation", "dependency-resolution", "runner-compatibility"],
+          "description": "Error classification category"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["error", "warning"],
+          "description": "Error severity level"
+        },
+        "file": {
+          "type": "string",
+          "description": "File path where the error was detected"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Line number of the error"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error message"
+        },
+        "auto_fixable": {
+          "type": "boolean",
+          "description": "Whether this error can be automatically repaired"
+        },
+        "fix_strategy": {
+          "type": "string",
+          "description": "Repair strategy identifier for auto-fix"
+        }
+      }
+    }
+  }
+}

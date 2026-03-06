@@ -1,0 +1,221 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: superai-platform
+    component: federation
+  name: fleet-management
+---
+apiVersion: v1
+data:
+  clusters.yaml: "clusters:\n  - name: production-us-east-1\n    apiEndpoint: https://api.prod-useast.superai.platform\n\
+    \    location: us-east-1\n    provider: AWS\n    environment: production\n   \
+    \ capabilities:\n      - quantum-computing\n      - ml-inference\n      - vector-database\n\
+    \    capacity:\n      cpu: \"1000\"\n      memory: \"4000Gi\"\n      nodes: 50\n\
+    \    status: active\n    health: healthy\n    lastSync: \"2024-02-11T10:00:00Z\"\
+    \n  \n  - name: production-eu-central-1\n    apiEndpoint: https://api.prod-eu.superai.platform\n\
+    \    location: eu-central-1\n    provider: AWS\n    environment: production\n\
+    \    capabilities:\n      - quantum-computing\n      - ml-training\n      - data-processing\n\
+    \    capacity:\n      cpu: \"800\"\n      memory: \"3200Gi\"\n      nodes: 40\n\
+    \    status: active\n    health: healthy\n    lastSync: \"2024-02-11T10:00:00Z\"\
+    \n  \n  - name: staging-us-west-2\n    apiEndpoint: https://api.staging-uswest.superai.platform\n\
+    \    location: us-west-2\n    provider: AWS\n    environment: staging\n    capabilities:\n\
+    \      - ml-inference\n      - data-processing\n    capacity:\n      cpu: \"200\"\
+    \n      memory: \"800Gi\"\n      nodes: 10\n    status: active\n    health: healthy\n\
+    \    lastSync: \"2024-02-11T10:00:00Z\"\n  \n  - name: development-ap-southeast-1\n\
+    \    apiEndpoint: https://api.dev-apse.superai.platform\n    location: ap-southeast-1\n\
+    \    provider: AWS\n    environment: development\n    capabilities:\n      - development\n\
+    \      - testing\n    capacity:\n      cpu: \"100\"\n      memory: \"400Gi\"\n\
+    \      nodes: 5\n    status: active\n    health: healthy\n    lastSync: \"2024-02-11T10:00:00Z\"\
+    \n"
+kind: ConfigMap
+metadata:
+  annotations:
+    eco-base/audit-log-level: minimal
+    eco-base/governance-policy: standard-v1
+    eco-base/uri: eco-base://k8s/core/configmap/cluster-registry
+    eco-base/urn: urn:eco-base:k8s:core:configmap:cluster-registry:sha256-4ce6072590997b4c120a474d2932800391b4303d8029f29302701ecad56dd9ab
+  labels:
+    app: superai-platform
+    app.kubernetes.io/component: eco-component
+    app.kubernetes.io/instance: eco-instance
+    app.kubernetes.io/name: cluster-registry
+    app.kubernetes.io/part-of: eco-base
+    app.kubernetes.io/version: 1.0.0
+    component: federation
+    eco-base/environment: development
+    eco-base/owner: eco-system
+    eco-base/platform: core
+  name: cluster-registry
+  namespace: fleet-management
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    eco-base/audit-log-level: minimal
+    eco-base/governance-policy: standard-v1
+    eco-base/uri: eco-base://k8s/core/secret/cluster-secrets
+    eco-base/urn: urn:eco-base:k8s:core:secret:cluster-secrets:sha256-887be3399e7bce42852c03414241838cf781f85aed4be648a5167a42b99496dd
+  labels:
+    app: superai-platform
+    app.kubernetes.io/component: eco-component
+    app.kubernetes.io/instance: eco-instance
+    app.kubernetes.io/name: cluster-secrets
+    app.kubernetes.io/part-of: eco-base
+    app.kubernetes.io/version: 1.0.0
+    component: federation
+    eco-base/environment: development
+    eco-base/owner: eco-system
+    eco-base/platform: core
+  name: cluster-secrets
+  namespace: fleet-management
+stringData:
+  production-eu-central-1-kubeconfig: "apiVersion: v1\nkind: Config\nclusters:\n-\
+    \ cluster:\n    certificate-authority-data: BASE64_ENCODED_CA_DATA\n    server:\
+    \ https://api.prod-eu.superai.platform\n  name: production-eu-central-1\ncontexts:\n\
+    - context:\n    cluster: production-eu-central-1\n    user: production-admin\n\
+    \  name: production-eu-central-1\nusers:\n- name: production-admin\n  user:\n\
+    \    token: SERVICE_ACCOUNT_TOKEN\n"
+  production-us-east-1-kubeconfig: "apiVersion: v1\nkind: Config\nclusters:\n- cluster:\n\
+    \    certificate-authority-data: BASE64_ENCODED_CA_DATA\n    server: https://api.prod-useast.superai.platform\n\
+    \  name: production-us-east-1\ncontexts:\n- context:\n    cluster: production-us-east-1\n\
+    \    user: production-admin\n  name: production-us-east-1\nusers:\n- name: production-admin\n\
+    \  user:\n    token: SERVICE_ACCOUNT_TOKEN\n"
+type: Opaque
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    eco-base/audit-log-level: minimal
+    eco-base/governance-policy: standard-v1
+    eco-base/uri: eco-base://k8s/core/deployment/cluster-registry-operator
+    eco-base/urn: urn:eco-base:k8s:core:deployment:cluster-registry-operator:sha256-d431a5c12fce679ad6e6031d281d05408d0f48245ecbf01c8e85d149af4bc32f
+  labels:
+    app: superai-platform
+    app.kubernetes.io/component: eco-component
+    app.kubernetes.io/instance: eco-instance
+    app.kubernetes.io/name: cluster-registry-operator
+    app.kubernetes.io/part-of: eco-base
+    app.kubernetes.io/version: 1.0.0
+    component: federation
+    eco-base/environment: development
+    eco-base/owner: eco-system
+    eco-base/platform: core
+  name: cluster-registry-operator
+  namespace: fleet-management
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cluster-registry-operator
+  template:
+    metadata:
+      labels:
+        app: superai-platform
+        component: federation
+    spec:
+      containers:
+      - args:
+        - --config-path=/etc/registry/clusters.yaml
+        - --sync-interval=300s
+        - --health-check-interval=60s
+        env:
+        - name: NAMESPACE
+          value: fleet-management
+        - name: LOG_LEVEL
+          value: info
+        image: ghcr.io/superai-platform/cluster-registry-operator:latest
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: metrics
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        name: operator
+        ports:
+        - containerPort: 8080
+          name: metrics
+        - containerPort: 8443
+          name: api
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: metrics
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        volumeMounts:
+        - mountPath: /etc/registry
+          name: config
+          readOnly: true
+        - mountPath: /etc/secrets
+          name: secrets
+          readOnly: true
+      serviceAccountName: fleet-management
+      volumes:
+      - configMap:
+          name: cluster-registry
+        name: config
+      - name: secrets
+        secret:
+          secretName: cluster-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    eco-base/audit-log-level: minimal
+    eco-base/governance-policy: standard-v1
+    eco-base/uri: eco-base://k8s/core/service/cluster-registry-service
+    eco-base/urn: urn:eco-base:k8s:core:service:cluster-registry-service:sha256-92400b43c0a7be8be21796c669398d69fe80f17271b798ccea51acfc450fb1e6
+  labels:
+    app: superai-platform
+    app.kubernetes.io/component: eco-component
+    app.kubernetes.io/instance: eco-instance
+    app.kubernetes.io/name: cluster-registry-service
+    app.kubernetes.io/part-of: eco-base
+    app.kubernetes.io/version: 1.0.0
+    component: federation
+    eco-base/environment: development
+    eco-base/owner: eco-system
+    eco-base/platform: core
+  name: cluster-registry-service
+  namespace: fleet-management
+spec:
+  ports:
+  - name: metrics
+    port: 8080
+    targetPort: metrics
+  - name: api
+    port: 8443
+    targetPort: api
+  selector:
+    app: cluster-registry-operator
+  type: ClusterIP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: superai-platform
+    component: federation
+  name: cluster-registry
+  namespace: fleet-management
+spec:
+  endpoints:
+  - interval: 30s
+    path: /metrics
+    port: metrics
+  selector:
+    matchLabels:
+      app: superai-platform
+      component: federation

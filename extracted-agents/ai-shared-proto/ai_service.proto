@@ -1,0 +1,46 @@
+syntax = "proto3";
+package eco-base.ai;
+
+service AIService {
+  rpc GenerateContent (GenerateRequest)  returns (GenerateResponse);
+  rpc StreamGenerate  (GenerateRequest)  returns (stream GenerateChunk);
+  rpc VectorAlign     (VectorRequest)    returns (VectorResponse);
+  rpc HealthCheck     (Empty)            returns (HealthStatus);
+}
+
+message Empty {}
+
+message GenerateRequest {
+  string prompt          = 1;
+  string model_id        = 2;
+  map<string, string> params = 3;
+}
+
+message GenerateResponse {
+  string job_id  = 1;
+  string status  = 2;
+  string result  = 3;
+}
+
+message GenerateChunk {
+  string job_id  = 1;
+  string chunk   = 2;
+  bool   done    = 3;
+}
+
+message VectorRequest {
+  repeated string tokens = 1;
+  int32 target_dim       = 2;  // 1024 - 4096
+  float tolerance        = 3;  // 0.0001 - 0.005
+}
+
+message VectorResponse {
+  repeated float coherence_vector = 1;
+  string alignment_model          = 2;
+  float  confidence               = 3;
+}
+
+message HealthStatus {
+  string status = 1;
+  string ts     = 2;
+}
