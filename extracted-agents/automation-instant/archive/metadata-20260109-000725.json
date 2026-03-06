@@ -1,13 +1,3 @@
-# @ECO-governed
-# @ECO-layer: GL20-29
-# @ECO-semantic: general-component
-# @ECO-audit-trail: gov-enterprise-architecture/governance/audit-trails/GL20_29-audit.json
-#
-# GL Unified Architecture Governance Framework Activated
-# GL Root Semantic Anchor: gov-enterprise-architecture/governance/ECO-ROOT-SEMANTIC-ANCHOR.yaml
-# GL Unified Naming Charter: gov-enterprise-architecture/governance/ECO-UNIFIED-NAMING-CHARTER.yaml
-
-
 {
   "archive_name": "refactor_playbooks_20260109_000725.tar.gz",
   "source_directory": "machine-native-ops/workspace/docs/refactor_playbooks",
