@@ -135,7 +135,10 @@ class K8sClient:
             }
         except Exception as exc:
             logger.error("k8s_health_check_failed", extra={"error": str(exc)})
-            return {"status": "error", "message": str(exc)}
+            return {
+                "status": "error",
+                "message": "Kubernetes health check failed",
+            }
 
     # ------------------------------------------------------------------
     # Namespace operations
