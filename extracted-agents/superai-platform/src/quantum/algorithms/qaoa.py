@@ -126,4 +126,11 @@ class QAOASolver:
             return {"job_id": job_id, "status": "error", "result": {"error": "Qiskit not installed"}, "metadata": {}, "execution_time_ms": 0}
         except Exception as e:
             logger.error("qaoa_error", error=str(e))
-            return {"job_id": job_id, "status": "error", "result": {"error": str(e)}, "metadata": {}, "execution_time_ms": 0}
+            # Return a generic error message to avoid exposing internal details to clients
+            return {
+                "job_id": job_id,
+                "status": "error",
+                "result": {"error": "An internal error occurred during QAOA optimization"},
+                "metadata": {},
+                "execution_time_ms": 0,
+            }
