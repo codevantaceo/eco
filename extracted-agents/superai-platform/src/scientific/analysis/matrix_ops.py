@@ -3,7 +3,10 @@ from __future__ import annotations
 
 from typing import Any
 
+import logging
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 
 class MatrixOperations:
@@ -73,6 +76,8 @@ class MatrixOperations:
                 return {"error": f"Unknown operation: {operation}"}
 
         except np.linalg.LinAlgError as e:
-            return {"error": f"Linear algebra error: {str(e)}"}
+            logger.exception("Linear algebra error during matrix operation")
+            return {"error": "Linear algebra error"}
         except Exception as e:
-            return {"error": str(e)}
+            logger.exception("Unexpected error during matrix operation")
+            return {"error": "Internal error"}
