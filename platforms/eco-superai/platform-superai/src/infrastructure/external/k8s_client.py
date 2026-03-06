@@ -374,8 +374,14 @@ class K8sClient:
             logger.error(
                 "k8s_scale_deployment_failed",
                 extra={"name": name, "namespace": namespace, "status": exc.status},
+            # Log full error details server-side, but avoid exposing them to clients.
+            logger.exception(
+                "k8s_scale_deployment_failed_unexpected",
+                extra={"name": name, "namespace": namespace},
             )
-            return {"error": f"API error {exc.status}: {exc.reason}"}
+            return {
+                "error": "Unexpected error while scaling deployment"
+            }
         except Exception as exc:
             logger.error("k8s_scale_deployment_failed", extra={"error": str(exc)})
             return {"error": str(exc)}
