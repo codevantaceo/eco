@@ -142,8 +142,9 @@ async def yaml_to_json_admin(yaml_content: str) -> dict[str, Any]:
     try:
         parsed = yaml.safe_load(yaml_content)
         return {"status": "success", "result": parsed}
-    except yaml.YAMLError as e:
-        return {"status": "error", "message": str(e)}
+    except yaml.YAMLError:
+        logger.exception("Failed to parse YAML content in admin utility")
+        return {"status": "error", "message": "Invalid YAML content"}
 
 
 @router.post("/cache/flush")
