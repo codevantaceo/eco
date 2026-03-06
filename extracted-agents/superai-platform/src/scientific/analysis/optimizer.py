@@ -2,6 +2,7 @@
 from __future__ import annotations
 from typing import Any
 import numpy as np
+import numexpr as ne
 
 
 class ScientificOptimizer:
@@ -16,13 +17,20 @@ class ScientificOptimizer:
                     ns = {**safe_ns, "x": x}
                     for i, val in enumerate(x):
                         ns[f"x{i}"] = val
-                    return float(eval(objective, {"__builtins__": {}}, ns))
+                    return float(ne.evaluate(objective, local_dict=ns))
 
                 x0 = np.array(initial_guess) if initial_guess else np.zeros(parameters.get("dimensions", 2))
                 scipy_bounds = [(b[0], b[1]) for b in bounds] if bounds else None
                 scipy_constraints = []
                 for c in constraints:
-                    scipy_constraints.append({"type": c.get("type", "ineq"), "fun": lambda x, expr=c.get("expression", "0"): float(eval(expr, {"__builtins__": {}}, {**safe_ns, "x": x}))})
+                    scipy_constraints.append(
+                        {
+                            "type": c.get("type", "ineq"),
+                            "fun": lambda x, expr=c.get("expression", "0"): float(
+                                ne.evaluate(expr, local_dict={**safe_ns, "x": x})
+                            ),
+                        }
+                    )
 
                 result = sci_opt.minimize(obj_func, x0, bounds=scipy_bounds, constraints=scipy_constraints or None, method=parameters.get("scipy_method", "SLSQP"), options={"maxiter": parameters.get("max_iterations", 1000)})
 
@@ -39,7 +47,7 @@ class ScientificOptimizer:
             elif method == "root":
                 def root_func(x: np.ndarray) -> float:
                     ns = {**safe_ns, "x": x if len(x) > 1 else x[0]}
-                    return float(eval(objective, {"__builtins__": {}}, ns))
+                    return float(ne.evaluate(objective, local_dict=ns))
 
                 x0 = np.array(initial_guess) if initial_guess else np.array([1.0])
                 result = sci_opt.root(root_func, x0)
@@ -61,7 +69,7 @@ class ScientificOptimizer:
                     ns = {**safe_ns, "x": x}
                     for i, p in enumerate(params):
                         ns[f"a{i}"] = p
-                    return eval(objective, {"__builtins__": {}}, ns)
+                    return ne.evaluate(objective, local_dict=ns)
                 p0 = initial_guess or [1.0] * parameters.get("num_params", 2)
                 popt, pcov = sci_opt.curve_fit(model_func, x_data, y_data, p0=p0)
                 residuals = y_data - model_func(x_data, *popt)
