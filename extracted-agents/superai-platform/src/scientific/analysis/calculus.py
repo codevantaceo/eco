@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any, Callable
 import numpy as np
 import ast
+import logging
 
 
 def _get_safe_math_namespace() -> dict[str, Any]:
@@ -169,5 +170,11 @@ class NumericalCalculus:
                 "result": round(result, 10),
                 "estimated_error": round(float(error), 12),
             }
-        except Exception as e:
-            return {"error": str(e)}
+        except Exception:
+            logging.getLogger(__name__).exception(
+                "Error during numerical integration (method=%s, bounds=(%s, %s))",
+                method,
+                lower_bound,
+                upper_bound,
+            )
+            return {"error": "An internal error occurred during integration."}
