@@ -12,9 +12,9 @@ class TestAuthService:
         self.auth = AuthService()
 
     def test_hash_and_verify_password(self):
-        hashed = self.auth.hash_password("SecureP@ss1")
-        assert hashed != "SecureP@ss1"
-        assert self.auth.verify_password("SecureP@ss1", hashed)
+        hashed = self.auth.hash_password("ExamplePass1!")
+        assert hashed != "ExamplePass1!"
+        assert self.auth.verify_password("ExamplePass1!", hashed)
         assert not self.auth.verify_password("wrong", hashed)
 
     def test_create_tokens(self):

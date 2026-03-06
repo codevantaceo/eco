@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 import sys
 import time
 from typing import Any
@@ -58,9 +59,12 @@ class HealthChecker:
             return {"status": "unhealthy", "error": str(e)}
 
     async def _check_database(self) -> dict[str, Any]:
+        db_url = os.getenv("HEALTHCHECK_DATABASE_URL")
+        if not db_url:
+            return {"status": "skipped", "reason": "HEALTHCHECK_DATABASE_URL not set"}
         try:
             import asyncpg
-            conn = await asyncio.wait_for(asyncpg.connect("postgresql://superai:superai_secret@localhost:5432/superai_db"), timeout=5)
+            conn = await asyncio.wait_for(asyncpg.connect(db_url), timeout=5)
             version = await conn.fetchval("SELECT version()")
             await conn.close()
             return {"status": "healthy", "version": version[:50]}
@@ -68,9 +72,12 @@ class HealthChecker:
             return {"status": "unhealthy", "error": str(e)}
 
     async def _check_redis(self) -> dict[str, Any]:
+        redis_url = os.getenv("HEALTHCHECK_REDIS_URL")
+        if not redis_url:
+            return {"status": "skipped", "reason": "HEALTHCHECK_REDIS_URL not set"}
         try:
             import redis.asyncio as aioredis
-            r = aioredis.from_url("redis://localhost:6379/0", socket_timeout=5)
+            r = aioredis.from_url(redis_url, socket_timeout=5)
             await r.ping()
             info = await r.info("server")
             await r.close()
@@ -79,9 +86,14 @@ class HealthChecker:
             return {"status": "unhealthy", "error": str(e)}
 
     async def _check_rabbitmq(self) -> dict[str, Any]:
+        api_url = os.getenv("HEALTHCHECK_RABBITMQ_URL")
+        username = os.getenv("HEALTHCHECK_RABBITMQ_USER")
+        password = os.getenv("HEALTHCHECK_RABBITMQ_PASSWORD")
+        if not all([api_url, username, password]):
+            return {"status": "skipped", "reason": "RabbitMQ credentials not set"}
         try:
             async with httpx.AsyncClient(timeout=5) as client:
-                resp = await client.get("http://localhost:15672/api/overview", auth=("superai", "superai_secret"))
+                resp = await client.get(api_url, auth=(username, password))
                 if resp.status_code == 200:
                     data = resp.json()
                     return {"status": "healthy", "version": data.get("rabbitmq_version", "unknown"), "node": data.get("node", "")}

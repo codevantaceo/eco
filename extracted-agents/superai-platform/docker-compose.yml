@@ -5,13 +5,13 @@ version: "3.9"
 
 x-common-env: &common-env
   APP_ENV: ${APP_ENV:-development}
-  DATABASE_URL: postgresql+asyncpg://superai:superai_secret@postgres:5432/superai_db
-  DATABASE_URL_SYNC: postgresql://superai:superai_secret@postgres:5432/superai_db
-  REDIS_URL: redis://redis:6379/0
-  CELERY_BROKER_URL: amqp://superai:superai_secret@rabbitmq:5672//
-  CELERY_RESULT_BACKEND: redis://redis:6379/1
+  DATABASE_URL: ${DATABASE_URL:?set DATABASE_URL for runtime}
+  DATABASE_URL_SYNC: ${DATABASE_URL_SYNC:?set DATABASE_URL_SYNC for runtime}
+  REDIS_URL: ${REDIS_URL:?set REDIS_URL for runtime}
+  CELERY_BROKER_URL: ${CELERY_BROKER_URL:?set CELERY_BROKER_URL for runtime}
+  CELERY_RESULT_BACKEND: ${CELERY_RESULT_BACKEND:?set CELERY_RESULT_BACKEND for runtime}
   ELASTICSEARCH_URL: http://elasticsearch:9200
-  SECRET_KEY: ${SECRET_KEY:-change-me-in-production-use-openssl-rand-hex-64}
+  SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY for runtime}
   JWT_ALGORITHM: HS256
   JWT_EXPIRATION_MINUTES: 30
   LOG_LEVEL: ${LOG_LEVEL:-info}
@@ -116,7 +116,7 @@ services:
     environment:
       POSTGRES_DB: superai_db
       POSTGRES_USER: superai
-      POSTGRES_PASSWORD: superai_secret
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD for runtime}
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
@@ -146,7 +146,7 @@ services:
       --maxmemory-policy allkeys-lru
       --appendonly yes
       --appendfsync everysec
-      --requirepass superai_redis_secret
+      --requirepass ${REDIS_PASSWORD:?set REDIS_PASSWORD for runtime}
     ports:
       - "${REDIS_PORT:-6379}:6379"
     volumes:
@@ -155,7 +155,7 @@ services:
       - superai-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "superai_redis_secret", "ping"]
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:?set REDIS_PASSWORD for runtime}", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -165,7 +165,7 @@ services:
     container_name: superai-rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: superai
-      RABBITMQ_DEFAULT_PASS: superai_secret
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?set RABBITMQ_PASSWORD for runtime}
       RABBITMQ_DEFAULT_VHOST: /
     ports:
       - "${RABBITMQ_PORT:-5672}:5672"

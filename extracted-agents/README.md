@@ -21,6 +21,7 @@ Consolidated, ready-to-migrate agent, bot, automation, and AI components from th
 - Python components expect standard tooling (`pip`, `pytest`) and may rely on the bundled `platform-shared` and `ai-shared-proto` modules. Adjust `PYTHONPATH` to include their `src` directories when running tests.
 - Node/TypeScript components (`automation-instant`, `automation-organizer`) keep their package manifests for installation via `npm`/`pnpm`.
 - The `superai-platform` bundle includes docs, infra manifests, and scripts alongside the AI agent code for completeness.
+- Secrets have been scrubbed and replaced with deployment-time placeholders/env vars; be sure to provide real credentials (e.g., `DATABASE_URL`, `CELERY_BROKER_URL`, `REDIS_URL`) before running.
 
 ## Migration Tips
 1. Copy or download `extracted-agents/` as a single unit.

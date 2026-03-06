@@ -23,8 +23,8 @@ class Environment(str, Enum):
 class DatabaseSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="DATABASE_")
 
-    url: str = "postgresql+asyncpg://superai:superai_secret@localhost:5432/superai_db"
-    url_sync: str = "postgresql://superai:superai_secret@localhost:5432/superai_db"
+    url: str = "postgresql+asyncpg://localhost:5432/superai_db"
+    url_sync: str = "postgresql://localhost:5432/superai_db"
     pool_size: int = Field(default=20, ge=5, le=100)
     max_overflow: int = Field(default=10, ge=0, le=50)
     pool_timeout: int = Field(default=30, ge=5)
@@ -37,7 +37,7 @@ class RedisSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="REDIS_")
 
     url: str = "redis://localhost:6379/0"
-    password: str = "superai_redis_secret"
+    password: str = ""
     max_connections: int = Field(default=50, ge=10)
     socket_timeout: int = Field(default=5, ge=1)
     socket_connect_timeout: int = Field(default=5, ge=1)
@@ -48,7 +48,7 @@ class RedisSettings(BaseSettings):
 class CelerySettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="CELERY_")
 
-    broker_url: str = "amqp://superai:superai_secret@localhost:5672//"
+    broker_url: str = "amqp://localhost:5672//"
     result_backend: str = "redis://localhost:6379/1"
     task_serializer: str = "json"
     result_serializer: str = "json"

@@ -59,7 +59,7 @@ Authorization: Bearer <jwt_token>
 {
   "username": "john_doe",
   "email": "john@example.com",
-  "password": "SecureP@ss123",
+  "password": "ExamplePass123!",
   "full_name": "John Doe",
   "role": "researcher"
 }

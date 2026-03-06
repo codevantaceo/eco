@@ -75,12 +75,12 @@ env:
   PROMETHEUS_ENABLED: "true"
 
 secrets:
-  secretKey: "CHANGE-ME"
-  databaseUrl: "postgresql+asyncpg://superai:CHANGE@postgres:5432/superai_db"
-  redisUrl: "redis://:CHANGE@redis:6379/0"
-  celeryBrokerUrl: "amqp://superai:CHANGE@rabbitmq:5672//"
-  jwtSecretKey: "CHANGE-ME"
-  openaiApiKey: ""
+  secretKey: "__SET_AT_DEPLOY__"
+  databaseUrl: "__SET_AT_DEPLOY__"
+  redisUrl: "__SET_AT_DEPLOY__"
+  celeryBrokerUrl: "__SET_AT_DEPLOY__"
+  jwtSecretKey: "__SET_AT_DEPLOY__"
+  openaiApiKey: "__SET_AT_DEPLOY__"
 
 probes:
   liveness:

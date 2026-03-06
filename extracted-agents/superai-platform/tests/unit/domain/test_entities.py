@@ -100,13 +100,13 @@ class TestEmail:
 
 class TestHashedPassword:
     def test_hash_and_verify(self):
-        pwd = HashedPassword.from_plain("SecureP@ss1")
-        assert pwd.verify("SecureP@ss1")
+        pwd = HashedPassword.from_plain("ExamplePass1!")
+        assert pwd.verify("ExamplePass1!")
         assert not pwd.verify("wrong")
 
     def test_hash_is_not_plaintext(self):
-        pwd = HashedPassword.from_plain("SecureP@ss1")
-        assert pwd.value != "SecureP@ss1"
+        pwd = HashedPassword.from_plain("ExamplePass1!")
+        assert pwd.value != "ExamplePass1!"
         assert pwd.value.startswith("$2b$")
 
     def test_weak_password_no_uppercase(self):
@@ -122,7 +122,7 @@ class TestHashedPassword:
             HashedPassword.from_plain("NoDigitHere")
 
     def test_str_hides_value(self):
-        pwd = HashedPassword.from_plain("SecureP@ss1")
+        pwd = HashedPassword.from_plain("ExamplePass1!")
         assert "HASHED" in str(pwd)
 
 
@@ -154,7 +154,7 @@ class TestRolePermissions:
 class TestUser:
     def test_create_user(self):
         email = Email.create("test@example.com")
-        pwd = HashedPassword.from_plain("SecureP@ss1")
+        pwd = HashedPassword.from_plain("ExamplePass1!")
         user = User.create(
             username="testuser",
             email=email,
@@ -167,14 +167,14 @@ class TestUser:
 
     def test_suspend_user(self):
         email = Email.create("test@example.com")
-        pwd = HashedPassword.from_plain("SecureP@ss1")
+        pwd = HashedPassword.from_plain("ExamplePass1!")
         user = User.create(username="testuser", email=email, hashed_password=pwd, full_name="Test", role=UserRole.DEVELOPER)
         user.suspend("policy violation")
         assert user.status == UserStatus.SUSPENDED
 
     def test_activate_suspended_user(self):
         email = Email.create("test@example.com")
-        pwd = HashedPassword.from_plain("SecureP@ss1")
+        pwd = HashedPassword.from_plain("ExamplePass1!")
         user = User.create(username="testuser", email=email, hashed_password=pwd, full_name="Test", role=UserRole.DEVELOPER)
         user.suspend("test")
         user.activate()

@@ -25,7 +25,7 @@ def _create_celery_app() -> Celery:
         broker = settings.celery.broker_url
         backend = settings.celery.result_backend
     except Exception:
-        broker = "amqp://superai:superai_secret@localhost:5672//"
+        broker = "amqp://localhost:5672//"
         backend = "redis://localhost:6379/1"
 
     app = Celery(

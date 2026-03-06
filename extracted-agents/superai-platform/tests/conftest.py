@@ -32,7 +32,7 @@ def sample_user_data() -> dict[str, Any]:
     return {
         "username": f"testuser_{uuid.uuid4().hex[:6]}",
         "email": f"test_{uuid.uuid4().hex[:6]}@example.com",
-        "password": "SecureP@ss123",
+        "password": "example-password-123",
         "full_name": "Test User",
         "role": "developer",
     }
@@ -43,7 +43,7 @@ def sample_admin_data() -> dict[str, Any]:
     return {
         "username": f"admin_{uuid.uuid4().hex[:6]}",
         "email": f"admin_{uuid.uuid4().hex[:6]}@example.com",
-        "password": "AdminP@ss456",
+        "password": "example-admin-password",
         "full_name": "Admin User",
         "role": "admin",
     }

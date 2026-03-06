@@ -19,7 +19,7 @@ class TestUserSchemas:
         req = UserCreateRequest(
             username="john_doe",
             email="john@example.com",
-            password="SecureP@ss1",
+            password="ExamplePass1!",
             full_name="John Doe",
             role="developer",
         )
@@ -27,15 +27,15 @@ class TestUserSchemas:
 
     def test_username_too_short(self):
         with pytest.raises(ValidationError):
-            UserCreateRequest(username="ab", email="a@b.com", password="SecureP@ss1")
+            UserCreateRequest(username="ab", email="a@b.com", password="ExamplePass1!")
 
     def test_username_invalid_chars(self):
         with pytest.raises(ValidationError):
-            UserCreateRequest(username="bad user!", email="a@b.com", password="SecureP@ss1")
+            UserCreateRequest(username="bad user!", email="a@b.com", password="ExamplePass1!")
 
     def test_invalid_role(self):
         with pytest.raises(ValidationError):
-            UserCreateRequest(username="test", email="a@b.com", password="SecureP@ss1", role="superadmin")
+            UserCreateRequest(username="test", email="a@b.com", password="ExamplePass1!", role="superadmin")
 
     def test_password_too_short(self):
         with pytest.raises(ValidationError):

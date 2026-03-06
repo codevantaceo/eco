@@ -22,7 +22,7 @@ class TestUserWorkflow:
         resp = client.post("/api/v1/users/register", json={
             "username": "testuser",
             "email": "not-an-email",
-            "password": "SecureP@ss1",
+            "password": "ExamplePass1!",
         })
         # Should fail validation at domain or schema level
         assert resp.status_code in (422, 400)

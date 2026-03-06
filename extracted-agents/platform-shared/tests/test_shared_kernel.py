@@ -216,7 +216,7 @@ class TestLocalEnvironmentManager:
     @pytest.mark.asyncio
     async def test_secrets_injection(self, env_mgr):
         eid = await env_mgr.create(EnvironmentProfile(name="sec"))
-        await env_mgr.inject_secrets(eid, {"DB_PASSWORD": "s3cret"})
+        await env_mgr.inject_secrets(eid, {"DB_PASSWORD": "example-db-password"})
         log = await env_mgr.get_audit_log(eid)
         assert any(e["event"] == "secrets_injected" for e in log)
 
