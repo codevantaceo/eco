@@ -5,9 +5,10 @@ from typing import Any
 
 from fastapi import APIRouter, Query
 from pydantic import BaseModel, Field
+import logging
 
 router = APIRouter()
-
+logger = logging.getLogger(__name__)
 
 class SystemStatusResponse(BaseModel):
     platform: str = "SuperAI Platform"
@@ -161,5 +162,6 @@ async def flush_cache(pattern: str = Query("*", max_length=200)) -> dict[str, An
             if keys:
                 await redis.delete(*keys)
             return {"status": "success", "flushed_keys": len(keys)}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
+    except Exception:
+        logger.exception("Failed to flush cache")
+        return {"status": "error", "message": "Cache operation failed"}
