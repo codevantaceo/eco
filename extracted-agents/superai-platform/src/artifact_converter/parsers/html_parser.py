@@ -110,14 +110,14 @@ class HtmlParser(BaseParser):
         )
 
         # Strip tags
-        clean = re.sub(r"<script[^>]*>.*?</script>", "", text, flags=re.DOTALL | re.IGNORECASE)
-        clean = re.sub(r"<style[^>]*>.*?</style>", "", clean, flags=re.DOTALL | re.IGNORECASE)
+        clean = re.sub(r"<script\b[^>]*>.*?</script\b[^>]*>", "", text, flags=re.DOTALL | re.IGNORECASE)
+        clean = re.sub(r"<style\b[^>]*>.*?</style\b[^>]*>", "", clean, flags=re.DOTALL | re.IGNORECASE)
         clean = re.sub(r"<[^>]+>", " ", clean)
         clean = re.sub(r"\s+", " ", clean).strip()
 
         # Attempt title extraction
         metadata: dict[str, Any] = {}
-        title_match = re.search(r"<title[^>]*>(.+?)</title>", text, re.IGNORECASE | re.DOTALL)
+        title_match = re.search(r"<title\b[^>]*>(.+?)</title\b[^>]*>", text, re.IGNORECASE | re.DOTALL)
         if title_match:
             metadata["title"] = title_match.group(1).strip()
 
