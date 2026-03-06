@@ -2,6 +2,7 @@
 from __future__ import annotations
 from typing import Any
 import numpy as np
+import logging
 
 
 class SignalProcessor:
@@ -32,4 +33,5 @@ class SignalProcessor:
                 "signal_length": n,
             }
         except Exception as e:
-            return {"error": str(e)}
+            logging.exception("Error during FFT computation: %s", e)
+            return {"error": "FFT computation failed"}
