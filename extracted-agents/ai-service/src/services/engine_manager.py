@@ -104,7 +104,7 @@ class EngineManager:
             for path in ["/health", "/v1/models", "/"]:
                 try:
                     resp = await client.get(path, timeout=5.0)
-                    if resp.status_code < 500:
+                    if 200 <= resp.status_code < 300:
                         health.is_available = True
                         health.latency_ms = (time.monotonic() - start) * 1000
                         health.last_check = time.time()
